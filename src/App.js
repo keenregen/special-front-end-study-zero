@@ -1,22 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { Header, HeaderTitle } from "./Header0";
 
 function App() {
+  const [headerTitleColor, setHeaderTitleColor] = useState("blue");
+  const [showDummyInfo, setShowDummyInfo] = useState(true);
+
+  const fnClick = () => {
+    headerTitleColor === "blue"
+      ? setHeaderTitleColor("white")
+      : setHeaderTitleColor("blue");
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <HeaderTitle title="An App" color={headerTitleColor} />
+        <Header fnClick={fnClick}>
+          {showDummyInfo ? <p>React App</p> : ""}
+        </Header>
       </header>
     </div>
   );
