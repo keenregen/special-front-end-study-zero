@@ -1,32 +1,25 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import { Header, HeaderTitle } from "./Header0";
+import React, { useEffect, useState } from "react";
+import UserList from "./components/UserList";
 
 function App() {
-  const [headerTitleColor, setHeaderTitleColor] = useState("blue");
-  const [showDummyInfo, setShowDummyInfo] = useState(true);
-  const [firstRender, setFirstRender] = useState(true);
+  const [dummyInfo, setDummyInfo] = useState([]);
 
-  const fnClick = () => {
-    headerTitleColor === "blue"
-      ? setHeaderTitleColor("white")
-      : setHeaderTitleColor("blue");
-    setFirstRender(false);
+  const getDummyInfo = async () => {
+    const resp = await fetch("https://dummyjson.com/todos");
+    const data = await resp.json();
+    setDummyInfo(data.todos);
   };
 
   useEffect(() => {
-    if (firstRender === true) return;
-    setShowDummyInfo(false);
-  }, [firstRender, headerTitleColor]);
+    getDummyInfo();
+  }, []);
+
+  console.log(dummyInfo);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <HeaderTitle title="An App" color={headerTitleColor} />
-        <Header fnClick={fnClick}>
-          {showDummyInfo ? <p>React App</p> : ""}
-        </Header>
-      </header>
+      <h1>Dummy Info List</h1>
+      <UserList data={dummyInfo} />
     </div>
   );
 }
