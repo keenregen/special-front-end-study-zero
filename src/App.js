@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import UserList from "./components/UserList";
+import DummyInfo from "./components/DummyInfo";
 
 function App() {
   const [dummyInfo, setDummyInfo] = useState([]);
@@ -18,8 +18,11 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Dummy Info List</h1>
-      <UserList data={dummyInfo} />
+      <h1>(Header)</h1>
+      <br></br>
+      <DummyInfo data={dummyInfo} />
+      <br></br>
+      <h1>(Footer)</h1>
     </div>
   );
 }
