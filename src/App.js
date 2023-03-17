@@ -5,7 +5,7 @@ function App() {
   const [dummyInfo, setDummyInfo] = useState([]);
 
   const getDummyInfo = async () => {
-    const resp = await fetch("https://dummyjson.com/todos");
+    const resp = await fetch("");
     const data = await resp.json();
     setDummyInfo(data.todos);
   };
